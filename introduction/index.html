@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formation JavaScript ES6</title>
+    <link rel="stylesheet" href="../css/bootstrap-icons.css" />
+    <script src="../js/scripts.js"></script>
+    <link rel="stylesheet" href="../css/style.css" />
+    <script>
+        // commentaire en un ligne
+        /*
+        écrire des commentaire en bloc
+        */
+
+        var prenom = 'Jean'; // on ne l'utilise plus INTERDIT X
+        console.log(prenom);
+        console.log(prenom, typeof prenom);
+
+        let nom = 'Neige';
+        console.log(nom, typeof nom);
+
+        const laPause = 'café ?';
+
+        nom = `5 + 3 == ${5 + 3}`;
+        console.log(nom); /* interpolation de texte */
+
+        nom = 'Jean';
+        console.log(nom);
+        
+        nom = 35;
+        console.log(nom);
+        console.log(typeof nom);
+        
+        nom = nom + 1;
+        console.log(nom);
+        console.log(typeof nom);
+        
+        nom = nom + ' toto';
+        console.log(nom);
+        console.log(typeof nom);
+
+        nom = 'D\'Artagnan';
+        /* nom = `D'Artagnan`; */
+
+        const LANGFR = 'FR-fr';
+        const LANGUK = 'EN-uk';
+        const LANGUS = 'EN-us';
+        const POUND = '£';
+        const USD = '$';
+        const EURO = '€';
+        const SERVERFR = '255.125.23.1';
+        const SERVERUS = '255.126.33.5';
+
+        function ecommerce(lang, devise, server){
+            /* */
+        }
+
+        ecommerce(LANGFR, EURO, SERVERUS);
+
+        /**
+         * Types Principaux : Primitif - Référence
+         * 
+         * Primitif
+         * number       => nombre (entier, flottant, etc..)
+         * bool         => vrai ou faux
+         * 
+         * Référence
+         * String       => chaîne de caractère
+         * Array        => tableau
+         * Object       => Objet
+         * JSON         => JavaScript Object Notation
+         * 
+         * 'toto': {
+         *      'age': 12,
+         *      'hobby': 'Mange des BN',
+         *      'adresse': {
+         *          'Voie': 'Rue de la tranquilité',
+         *          'Numéro' : '12'
+         *      }
+         * }
+         * 
+        */
+
+        /**
+         * Opérateurs 
+         * 
+         * Mathématiques
+         * 
+         * +    => addition (mais aussi la concaténation)
+         * -    => soustraction
+         * *    => multiplication
+         * **   => Puissance
+         *      2 exposant => 3 Math.pow(2,3)
+         *      2**3
+         * /    => Division 10 / 3 => 3.3333333333
+         * %    => Modulo (rest de la division entière)
+         *                  10 % 3 => 1
+         * il n'y a pas d'opérateur pour le quotient
+         * pour avoir le quotien d'une division
+         * 
+         * let res = parseInt(10/3);
+         * <=>
+         * let res = parseInt(3.33333333);
+         * <=>
+         * let res = 3;
+         * 
+         * ++   => incrémentation
+         * --   => décrémentation
+         * 
+        */
+
+        let cpt = 0;
+        cpt = cpt + 1; /* ajoute 1 à la valeur de cpt (===1) */
+        console.log(cpt);
+        cpt++;      /* équivalent à cpt = cpt + 1 => 2 */
+        console.log(cpt);
+        console.log(cpt++); /* affiche 2 puis ajouter 1 à cpt */
+        console.log(cpt);
+        console.log(++cpt); /* ajoute 1 à cpt et ensuite affiche le contenu */
+
+        /**
+         * Logique
+         * 
+         * ET
+         * &&
+         *  a && b  => a est vrai et b est vrai = vrai
+         *  a && b  => a est vrai et b est faux = faux
+         *  a && b  => a est faux et b est vrai = faux
+         *  a && b  => a est faux et b est faux = faux
+         * 
+         * OU
+         * ||
+         *  a || b  => a est vrai ou b est vrai = vrai
+         *  a || b  => a est vrai ou b est faux = vrai
+         *  a || b  => a est faux ou b est vrai = vrai
+         *  a || b  => a est faux ou b est faux = faux
+         * 
+         * OU EXCLUSIF BINAIRE (XOR)
+         * ^
+         *  a ^ b  => a est vrai xor b est vrai = faux
+         *  a ^ b  => a est vrai xor b est faux = vrai
+         *  a ^ b  => a est faux xor b est vrai = vrai
+         *  a ^ b  => a est faux xor b est faux = faux
+         * 
+         * NON
+         * !       => 
+         *  !a     => si a est vrai, !a est faux
+         *  !a     => si a est faux, !a est vrai
+        */
+
+        /**
+         * Comparaison
+         * <    => strictement inférieur à
+         * >    => strcitement supérieur à
+         * <=   =>Inférieur ou égal à
+         * >=   => supérieur ou égal à
+         * 
+         * ==   =>  compraison de valeur (non stricte)
+         * ===  =>  comparaison de valeur ET de type (stricte)
+         * 
+         * 2 == 2 => vrai
+         * 2 == '2' => vrai
+         * 
+         * 2 === 2 => vrai
+         * 2 === '2' => faux
+         * 
+         * !=   => différence non stricte
+         * !==  => différence stricte
+         * 
+         * 2 != 2 => faux
+         * 2 != '2' => faux
+         * 
+         * 2 !== 2 => faux
+         * 2 !== '2' => vrai
+         * 
+        */
+
+        /*
+        créer deux variables nombre et afficher dans la console
+            leur addition
+            leur soustraction
+            leur multiplication
+                 division
+                 le modulo
+            var1 puissance var2
+        */
+
+        const a = 42;
+        console.log(a);
+        const b = 66;
+        console.log(b);
+        console.log(a + b);
+        console.log(`${a} + ${b} = ${a + b}`);
+        console.log(a - b);
+        console.log(a * b);
+        console.log(a / b);
+        console.log(a % b);
+        /* le quotient */
+        console.log(parseInt(a / b));
+        console.log(Math.pow(a, b));
+        console.log(a**b);
+
+        
+        
+    </script>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <a href="../">
+                <h1>Formation JavaScript ES6</h1>
+            </a>
+            <i class="bi bi-list toggle-menu" style="font-size: 2rem;color: white;" data-target="#navPrinc"></i>
+        </div>
+    </header>
+    <nav>
+        <div class="container">
+            <div class="slide-menu" id="navPrinc">
+                <ul class="navigation">
+                    <li>
+                        <details>
+                            <summary>
+                                Introduction
+                            </summary>
+                            <ul class="navigation">
+                                <li>
+                                    <a href="../introduction/index.html" title="premiers scripts JS">Intro JS</a>
+                                </li>
+                                <li>
+                                    <a href="../introduction/tableaux.html" title="Les tableaux JS JS">Les tableaux</a>
+                                </li>
+                                <li>
+                                    <a href="../introduction/fonctions.html" title="Les fonctions JS">Les fonctions</a>
+                                </li>
+                                <li>
+                                    <a href="../introduction/destructuration.html" title="La destructuration">La destructuration</a>
+                                </li>
+                                <li>
+                                    <a href="../introduction/storage.html" title="Storage">Storage</a>
+                                </li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>
+                                Le DOM
+                            </summary>
+                            <ul class="navigation">
+                                <li>
+                                    <a href="../dom/index.html" title="Le DOM : Document Object Model">DOM</a>
+                                </li>
+                                <li>
+                                    <a href="../dom/dom.html" title="Le DOM : Créer dans le DOM">Créer dans le DOM</a>
+                                </li>
+                                <li>
+                                    <a href="../dom/css.html" title="Le DOM : CSS">DOM & CSS</a>
+                                </li>
+                                <li>
+                                    <a href="../dom/dataset.html" title="Le DOM : Les dataset">Dataset</a>
+                                </li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>
+                                AJAX
+                            </summary>
+                            <ul class="navigation">
+                                <li>
+                                    <a href="../ajax/index.html" title="AJAX : xhr">XHR</a>
+                                </li>
+                                <li>
+                                    <a href="../ajax/promesses.html" title="AJAX : Promesses">Promesses</a>
+                                </li>
+                                <li>
+                                    <a href="../ajax/bdd.html" title="AJAX : Fetch">Fetch</a>
+                                </li>
+                                <li>
+                                    <a href="../ajax/fetchjson.html" title="AJAX : fetch & JSON">JSON</a>
+                                </li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>
+                                POO
+                            </summary>
+                            <ul class="navigation">
+                                <li>
+                                    <a href="../poo/index.html" title="POO : Programmation Orientée Objet">POO</a>
+                                </li>
+                                <li>
+                                    <a href="../poo/collection.html" title="POO : Les collections">Collections</a>
+                                </li>
+                                <li>
+                                    <a href="../poo/module.html" title="POO : modules">Modules</a>
+                                </li>
+                                <li>
+                                    <a href="../poo/iterator.html" title="POO : iterator">Iterator</a>
+                                </li>
+                                <li>
+                                    <a href="../poo/factory.html" title="POO : Factory">Factory</a>
+                                </li>
+                                <li>
+                                    <a href="../poo/class.html" title="POO : classes">Classes</a>
+                                </li>
+                            </ul>
+                        </details>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main class="container">
+        <article>
+            <h3>Ecmascript</h3>
+            <p>
+                Ecmascript (es) est une norme sur laquelle s'appuie JS. (ActionScript => flash, TypeScript).
+            </p>
+            <p>
+                La dernière norme ecmascript es7 (2017, très peu de différences avec es6)
+            </p>
+            <ul>
+                <li>es1 - Juin 1997</li>
+                <li>es2 - Juin 1998</li>
+                <li>es2 - Décembre 1999</li>
+                <li>es4 - version abandonnée (aux alentours de 2007)</li>
+                <li>es5 - Décembre 2009</li>
+                <li>es6 - Juin 2015</li>
+                <li>es7 - Juin 2016</li>
+                <li>es8 - Juin 2017</li>
+                <li>es9 - Juin 2018</li>
+            </ul>
+            <p>
+                Jusqu'en 2010, JS était mal considéré par les développeurs ( peu normé, trop permissif )
+            </p>
+            <p>
+                L'arrivée de Google Chrome, avec en plus l'envie de Google de refaire fonctionner correctement
+                JS.
+                Création du moteur d'interprétation V8.
+                => un boost des capacitées de JS et son éxécution
+            </p>
+            <p>
+                Grâce au V8, des nouveau langages ou méthode de développement sont arrivées, notemment NodeJs
+                (2009),
+                qui s'appuis sur JS mais s'éxécute sur le serveur
+            </p>
+            <p>
+                La convention du code en es6 est visible sur Github
+                <a href="https://github.com/elierotenberg/coding-styles/blob/master/es6.md" target="_blank">
+                    es6
+                </a>
+            </p>
+        </article>
+    </main>
+    <footer>
+        <div class="container">
+            &copy; DAWAN - 07-2023
+        </div>
+    </footer>
+</body>
+
+</html>
