@@ -1,0 +1,6 @@
+$ cat .gitignore
+*.[oa]
+*~
+2022-09-27-old/
+2023-07-10-old/
+old/
