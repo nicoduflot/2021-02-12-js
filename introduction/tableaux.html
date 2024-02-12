@@ -153,7 +153,15 @@
         console.log(firstEntry, cars);
 
         /* extraire, remplacer, ajouter des valeurs dans le tableau .splice() */
-
+        /* utilisation 1 : extraire des valeurs */
+        const removed = cars.splice(1, 3);
+        console.log(removed, cars);
+        /* remplacer */
+        const replaced = cars.splice(0, 1, 'Alpine', 'Mazda');
+        console.log(replaced, cars);
+        /* ajouter */
+        cars.splice(1, 0, firstEntry, lastEntry, removed[0], removed[1], removed[2], replaced[0]);
+        console.log(cars);
     </script>
 </head>
 <body>
