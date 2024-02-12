@@ -162,6 +162,149 @@
         /* ajouter */
         cars.splice(1, 0, firstEntry, lastEntry, removed[0], removed[1], removed[2], replaced[0]);
         console.log(cars);
+
+        /* 
+        faire une copie de cars dans le nouveau tableau carsClone 
+        supprimer la dernière valeur de carsClone
+        afficher cars et carsClone dans la console
+        */
+
+        let carsClone = cars.slice();
+        carsClone.pop();
+        console.log(carsClone, cars);
+
+        let partCars = cars.slice(3, 6);
+        console.log(partCars);
+
+        let tabExemple = '12.5;56.3;12;0.5'.split(';');
+        console.log(tabExemple);
+
+        let chaineExemple = [12.5, 56.3, 12, 0.5].join(';');
+        console.log(chaineExemple);
+
+        let mot01 = 'kayane';
+        let motInverse = mot01.split('').reverse().join('');
+        console.log(motInverse);
+
+        if(mot01 === motInverse){
+            console.log(`${mot01} est un palindrome`);
+        }else{
+            console.log(`${mot01} n'est pas un palindrome`);
+        }
+
+        let mot02 = 'kayak';
+        motInverse = mot02.split('').reverse().join('');
+
+        if(mot02 === motInverse){
+            console.log(`${mot02} est un palindrome`);
+        }else{
+            console.log(`${mot02} n'est pas un palindrome`);
+        }
+
+        tabExemple.sort().reverse();
+        console.log(tabExemple);
+
+        /* et les tableau à deux dimensions ? */
+        let carsTest = [
+            ['Fiat', 1996],
+            ['Kya', 1995],
+            ['Kya', 1990],
+            ['Ford', 1950],
+            ['12', '62'],
+            ['12', 1]
+        ];
+
+        console.log(carsTest);
+        console.table(carsTest);
+
+        console.table(carsTest.sort());
+
+        /* boucles for imbriquées : permettent de parcourir des tableaux de tableaux */
+
+        console.log('---------- parcourir un "tableau à deux dimensions" avec for --------------');
+        for(let i = 0; i < carsTest.length; i = i + 1){
+            for(let j = 0; j < carsTest[i].length; j = j + 1){
+                console.log(carsTest[i][j]);
+            }
+        }
+
+        console.log('------- parcourir un "tableau à deux dimensions" avec for of ----------');
+        for(value of carsTest){
+            for(subValue of value){
+                console.log(subValue);
+            }
+        }
+
+        console.log('trouver un élément dans un tableau .find()');
+        const arrayNum = [5, 8, 130, 54, 12, 44];
+        /* trouver le premier élément du tableau strictement supérieur à 20 */
+        const found = arrayNum.find(function(element){
+            /*
+            if(element > 20){
+                return element;
+            }
+            */
+           return element > 20;
+        });
+        
+        console.log(found);
+        /* trouver tous les éléments du tableau strictement supérieur à 20 */
+        console.log('trouver tous les éléments correspondant à un filtre dans un tableau .filter()');
+        const filtered = arrayNum.filter(function(element){
+            return element > 20;
+        });
+
+        console.log(filtered);
+
+        /*
+        function(element){
+            if(element > 20){
+                return element;
+            }
+        }
+
+        function(element){
+            return element > 20;
+        }
+
+        (element)=>{
+            return element > 20;
+        }
+
+        element=>{
+            return element > 20;
+        }
+
+        const filtered = arrayNum.filter(function(element){
+            if(element > 20){
+                return element;
+            }
+        });
+
+        const filtered = arrayNum.filter(element=>element > 20);
+        
+        */
+
+        const filtered2 = arrayNum.filter(element=>element > 20);
+        console.log(filtered2);
+
+        /* Gérer les CONSÉQUENCES ! */
+
+        let monObjet = {
+            nom: 'toto',
+            numbers: [5, 8, 130, 54, 12, 44],
+            affTab: function(){
+                console.log(this);
+                console.log(this.nom);
+                this.numbers.map((element)=>{
+                    console.log(this.nom);                    
+                    console.log(element);
+                });
+            }
+        };
+
+        monObjet.affTab();
+
     </script>
 </head>
 <body>
