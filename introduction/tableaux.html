@@ -8,7 +8,152 @@
     <script src="../js/scripts.js"></script>
     <link rel="stylesheet" href="../css/style.css" />
     <script>
+        /* avant es6 */
+        /*
+        var tableau = new Array('valeur', 1, 13, true, {nom: 'Duflot', age: 44});
+        console.log(tableau);
+        console.log(typeof tableau);
+        */
+
+        const tableau = ['valeur', 1, 13, true, {nom: 'Duflot', age: 44}];
+        console.log(tableau);
+        console.log(typeof tableau);
+
+        let tabTest = [];
+        console.log('tabTest : ', tabTest);
+
+        /* 
+        Les tableaux associatifs 
+        en php  les tableaux peuvent être de cette forme
+        [
+            "uneClef" => "une valeur",
+            12 => 145,
+            "longitude" => ""
+        ]
+
+        En JS, ça n'existe naturellement, on peut les créer mais ÇA N'EST PAS NATUREL
+        */
+
+        let tabAsso = [];
+        tabAsso['fruit'] = 'cerise';
+        tabAsso['legume'] = 'courgette';
+        tabAsso['cereale'] = 'blé';
+
+        console.log(tabAsso);
+
+        /* 
+        une des raisons principale est que javascript ne reconnais 
+        pas de longueur à ce tableau alors qu'il est bien composé de trois éléments 
+
+        On utilisera à la place une instance de la classe Map() (plus tard dans la partie collection)
+        */
+
+        let cars = ['Peugeot', 'Citroën', 'Renault'];
+        console.log(cars.length);
+
+        /* ajouter un élément dans le tableau */
+        cars[cars.length] = 'Ford'; /* NON !!!!! */
+        /* on utilise la méthode des tableau .push() */
+        cars.push('Fiat', 'Hyundai');
+
+        /* les boucles */
+
+        console.log('------------ boucle for ----------');
+        for(let i = 0; i < cars.length; i = i + 1){
+            console.log(cars[i]);
+        }
+
+        console.log('------------ boucle for in ----------');
+        for(let index in cars){
+            console.log(cars[index]);
+        }
         
+        /* le for in peut parcourir les objets */
+        
+        const obj = {
+            nom: 'Duflot',
+            prenom: 'Nicolas',
+            age: 44,
+            presentation: function(){
+                return `Bonjour, je m'appelle ${this.prenom} ${this.nom}`;
+            }
+        };
+        
+        console.log(obj);
+        console.log(obj.nom);
+        console.log(obj.presentation());
+        
+        console.log('------------ boucle for in sur un objet ----------');
+        for(let key in obj){
+            console.log(`${key} : ${obj[key]}`);
+        }
+        
+        /* depuis es6 */
+        console.log('------------ boucle for of ----------');
+        for(let value of cars){
+            console.log(value);
+        }
+        
+        console.log('------------ boucle tant que (while) ----------');
+        let cpt = 0;
+        while(cpt < cars.length){
+            console.log(cars[cpt]);
+            cpt = cpt + 1;
+        }
+        
+        let newCars = [];
+        cpt = 0;
+        console.log('------------ boucle faire tant que (do...while) ----------');
+        do{
+            if(cars.length > 0){
+                console.log(cars[cpt]);
+                newCars.push(cars[cpt]);
+            }
+            cpt = cpt + 1 ;
+        }while(cpt < cars.length)
+
+        console.log(newCars);
+
+        console.log('---------- forEach() ---------------');
+        cars.forEach(function(value){
+            console.log('toto', value);
+        });
+
+        let tabTarif = [12, 55.6, 23];
+        const TVA = 0.055;
+
+        console.log(tabTarif);
+        tabTarif.forEach(function(valeur, index, tab){
+            tab[index] = valeur * (1 + TVA);
+        });
+        
+        console.log(tabTarif);
+
+        console.log('------------ .map() (uniquement pour les tableaux) -----------');
+        cars.map(function(valeur, index, tab){
+            console.log(tab[index], valeur);
+        });
+
+        /* es6 .entries() */
+        console.log('------------- .entries() -------------');
+        for(let entry of cars.entries()){
+            console.log(entry);
+        }
+
+        cars.push('Seat', 'Toyota', 'Volkswagen');
+        console.table(cars);
+
+        /* supprimer les valeurs du tableau */
+        /* supprimer la dernière "case"d'un tableau .pop() extraiy la dernière valeur du tableau */
+        const lastEntry = cars.pop();
+        console.log(lastEntry, cars);
+
+        /* supprimer la première case d'un tableau (extraire la donnée et supprimer la case) .shift() */
+        const firstEntry = cars.shift();
+        console.log(firstEntry, cars);
+
+        /* extraire, remplacer, ajouter des valeurs dans le tableau .splice() */
+
     </script>
 </head>
 <body>
