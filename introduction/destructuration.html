@@ -100,18 +100,29 @@
 
         console.log(perso1, perso1.coupSpecial(), perso2, perso2.coupSpecial());
 
+        /* créer un exo avec la destructuration */
+
         /* créer une fonction en paramètre un taux et une liste de prix, en sortie la liste de prix avec le taux appliqué */
 
         /*
         
-        function tauxPromo(taux, liste de prix){
+        function tauxPromo(taux, ...prixHT){
 
-            return tabPrixTaux;
+            return tabTTC;
         }
         
         */
 
-        
+        function tauxPromo(taux = 1, ...prixHT){
+            let tabTTC = [];
+            prixHT.map(element=>{
+                tabTTC.push(element*taux);
+            })
+
+            return tabTTC;
+        }
+
+        console.log(tauxPromo(1.1, 12, 34, 66));
         
 
     </script>
