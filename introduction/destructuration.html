@@ -9,7 +9,99 @@
     <script src="../js/scripts.js"></script>
     <link rel="stylesheet" href="../css/style.css" />
     <script>
+        const liste = [1, 2, 3, 4];
+        /* assigner les valeurs de la liste dans les variable a, b et c */
+        /*
+        const a = liste[0];
+        const b = liste[1];
+        const c = liste[2];
+        */
+
+        const[a, b, c] = liste;
+        console.log(`a = ${a}, b = ${b}, c = ${c}`);
         
+        const[d, ,f, g] = liste;
+        console.log(`d = ${d}, f = ${f}, g = ${g}`);
+        
+        const[h, i, j, k = 0, l = 5] = liste;
+        console.log(`h = ${h}, i = ${i}, j = ${j}, k = ${k}, l = ${l}`);
+
+        function truc(unTruc = 12, uneOption = false, ...valeurs){
+            console.log(unTruc);
+            console.log(uneOption);
+            console.log(valeurs);
+            const [a = 0, b = false, c = 'Compta'] = valeurs;
+            console.log(a, b, c);
+        }
+
+        truc();
+        truc(13, true, 123.03, 'deebweeb', 101, 56, 85);
+
+        let val01 = 42;
+        let val02 = 55;
+
+        console.log(val01, val02);
+        /*
+        let tampon = val01;
+        val01 = val02;
+        val02 = tampon;
+        */
+        [val01, val02] = [val02, val01];
+        console.log(val01, val02);
+
+        const [indexDepart, nbElementsSupp, ...valeursAjoutees] = [0, 3, 'toto', 'tata', 'titi']
+
+        console.log(indexDepart, nbElementsSupp, valeursAjoutees);
+
+        /* la destructuration fonctionne aussi avec les objets */
+
+        let jeanNeige = {
+            lastName: 'Sno',
+            firstName: 'Jon',
+            job: 'NightWatch',
+            knowledge(){
+                return `you 'no 'notin' ${this.firstName} ${this.lastName}`;
+            }
+        };
+
+        console.log(jeanNeige.lastName);
+        console.log(jeanNeige.knowledge());
+
+        let { lastName, firstName, job} = jeanNeige;
+
+        console.log(lastName);
+
+        let {
+            lastName: nom,
+            firstName: prenom
+        } = jeanNeige;
+
+        console.log(prenom);
+
+        let perso1 = {
+            nom: 'LeCanard',
+            prenom: 'Herbert',
+            coupSpecial: function(){
+                return 'Pichenette';
+            }
+        }
+        
+        let perso2 = {
+            nom: 'LeGragon',
+            prenom: 'Marvin',
+            coupSpecial: function(){
+                return 'TONG DEUM !!';
+            }
+        }
+
+        console.log(perso1, perso1.coupSpecial(), perso2, perso2.coupSpecial());
+
+        [perso1.coupSpecial, perso2.coupSpecial] = [perso2.coupSpecial, perso1.coupSpecial];
+
+        console.log(perso1, perso1.coupSpecial(), perso2, perso2.coupSpecial());
+
+        
+
     </script>
 </head>
 
