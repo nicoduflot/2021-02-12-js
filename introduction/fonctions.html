@@ -8,6 +8,104 @@
     <script src="../js/scripts.js"></script>
     <link rel="stylesheet" href="../css/style.css" />
     <script>       
+        function circo(rayon){
+            /*
+            let circonference = 0;
+            circonference = 2 * Math.PI * rayon;
+            return circonference;
+            */
+
+            /*
+            ternaire 
+            if(isNaN(parseFloat(rayon))){
+                return 0;
+            }else{
+                return 2 * Math.PI * rayon;
+            }
+            */
+            return ( isNaN(parseFloat(rayon)))? 0 : (2 * Math.PI * rayon);
+        }
+
+        console.log(circo('2'));
+        console.log(circo(5));
+        console.log(circo('a'));
+
+        /*
+        ... => opérateur variadique (rest parameter || spread parameter)
+
+        function test(...Valeur){
+            // code
+        }
+
+        test(12, 'jojo', 56);
+
+        valeurs <=> [12, 'jojo', 56]
+        */
+
+        function addition(...valeurs){
+            let res = 0;
+            for(let nombre of valeurs){
+                if( !isNaN(nombre) ){
+                    res = res + parseFloat(nombre);
+                }
+            }
+            return res;
+        }
+
+        console.log(addition(1,2,3,4,5,6,7,8,9));
+        console.log(addition(1,2,'3.2',4,5, 'toto',6,7,8,9));
+
+        let uneVarVide = null;
+
+        const maFonctionAnonyme = function(name = null){
+            /*
+            if(name === null){
+                return 'Hello Kitty';
+            }else{
+                return `Hello ${name}`;
+            }
+            */
+            return `Hello ${(name === null)? 'Kitty': name }`; 
+        };
+
+        /* fonction auto-exécutées */
+        /*
+        ( <définition de la fonction de callback > )( <définition des variable a envoyer dans les paramère de la fonction de callback s'il y en a>)
+        */
+
+        (
+            function(name){
+                console.log(name);
+            }
+        )('Nicolas');
+
+        /*
+        exercice
+        
+        créer une fonction qui va parcourir un tableau de données tableauDeFruits 
+        et renvoyer une liste des doublons dans le tableau tableauxDoublons
+
+        Pensez a utiliser .map()
+
+        le fruit :  est présent x fois
+
+        */
+
+        let tableauDeFruits = [
+            'banane',
+            'tomate',
+            'pêche',
+            'banane',
+            'tomate',
+            'banane',
+            'fraise',
+            'tomate',
+            'pêche',
+            'banane',
+            'tomate'
+        ];
+
+        let tableauxDoublons = [];
 
     </script>
 </head>
