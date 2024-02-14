@@ -9,17 +9,22 @@ window.addEventListener('DOMContentLoaded', function(event){
     */
 
     const buttonClick = document.querySelector('button.testez-moi');
-    buttonClick.addEventListener('click', function(){
-        console.log(this.innerHTML);
+    buttonClick.addEventListener('click', function(event){
+        event.stopPropagation();
+        //console.log(this.innerHTML);
     });
 
     const allP = document.querySelectorAll('p:not(p.special)');
-    console.log(allP);
+    //console.log(allP);
+
+    this.document.querySelector('section').addEventListener('click', function(){
+        console.log('toto');
+    });
 
     allP.forEach(function(paragraphe){
         paragraphe.addEventListener('click', function(){
-            console.log(this.innerHTML);
-            console.log(this.classList);
+            //console.log(this.innerHTML);
+            //console.log(this.classList);
             this.classList.toggle('fondGris20');
             /*
             if(this.classList.contains('toto')){
@@ -30,4 +35,26 @@ window.addEventListener('DOMContentLoaded', function(event){
             */
         });
     });
+
+    document.getElementById('checkP').addEventListener('click', function(event){
+        event.stopPropagation();
+        document.querySelectorAll('p:not(p.stupide)').forEach(function(paragraphe){
+            console.log(paragraphe);
+        });
+    });
+
+    const imgOver = document.getElementById('imgOver');
+
+    imgOver.addEventListener('mouseover', function(){
+        this.setAttribute('src', '../images/pip-boy-thumb-up.png');
+        this.setAttribute('alt', 'Pip boy avec le bras droit');
+        this.nextElementSibling.innerHTML = 'Pip boy avec le bras droit';
+    });
+    
+    imgOver.addEventListener('mouseleave', function(){
+        this.setAttribute('src', '../images/pip-boy-thumb-down.png');
+        this.setAttribute('alt', 'Pip boy sans le bras droit');
+        this.nextElementSibling.innerHTML = 'Pip boy sans le bras droit';
+    });
+
 });
