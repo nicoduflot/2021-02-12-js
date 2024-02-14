@@ -56,6 +56,11 @@
 
             selon le bouton cliqué, mette la bonne classe à l'élément carré
             */
+
+            const carre = document.getElementById('carre');
+            document.getElementById('gauche').addEventListener('click', ()=>carre.className = 'gauche');
+            document.getElementById('centre').addEventListener('click', ()=>carre.className = '');
+            document.getElementById('droite').addEventListener('click', ()=>carre.className = 'droite');
         });
     </script>
 </head>
