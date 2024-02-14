@@ -9,6 +9,35 @@
     <link rel="stylesheet" href="../css/style.css" />
     <script src="../js/scripts.js"></script>
     <script>
+        function addItemList(item){
+            //console.log(item);
+            if(item !== ''){
+                /*
+                on peut transformer une collection d'éléments HTML en un tableau,
+                pour pouvoir utiliser la méthode .include() des tableaux qui permet de vérifier s'il y a déja au moins une occurence d'un élément
+                */
+                const tabLi = Array.from(document.querySelectorAll('#toDoList li'));
+                /*
+                tabLi est un tableau contenant des éléments de liste <li></li>, on le parcour avec .map(), 
+                dans la callback du .map(), on récupère le contenu texte de la li et on la retourne.
+                à la sortir du .map(), on regarde si la chaîne de caratère de l'élément parcouru est semblable
+                à l'élément que l'on veut ajouter dans la liste.
+                dès qu'il y a correspondance (doublon) on sort prématurément de la fonction
+                Sinon, on continue et l'élément est ajouté à la liste
+                */
+                if ( tabLi.map((c)=>c.textContent.toLowerCase()).includes(item.toLowerCase()) ){
+                    return;
+                }
+
+                const li = document.createElement('li');
+                li.appendChild(document.createTextNode(item));
+                li.addEventListener('click', function(){
+                    this.remove();
+                });
+                document.getElementById('toDoList').appendChild(li);
+                return true;
+            }
+        }
         window.addEventListener('DOMContentLoaded', function(){
             const div = document.getElementById('conteneur');
             /*
@@ -81,6 +110,22 @@
                     this.remove();
                 });
                 document.getElementById('test').append(span);
+            });
+
+            /* récupérer l'événement clic du bouton */
+            document.getElementById('addItem').addEventListener('click', function(){
+                /* fonction d'ajout dans la liste */
+                addItemList(document.getElementById('listItem').value);
+                document.getElementById('listItem').value = '';
+            });
+
+            /* récupérer l'événement clavier touche relevée sur l'input */
+            document.getElementById('listItem').addEventListener('keyup', function(event){
+                if(event.key === 'Enter'){
+                    /* fonction d'ajout dans la liste */
+                    addItemList(document.getElementById('listItem').value);
+                    document.getElementById('listItem').value = '';
+                }
             });
 
         });
@@ -277,7 +322,7 @@
                 <h2>To do list</h2>
                 <p>
                     On écrit un élément de la liste dans le champ, on clique sur "ajouter". Un élément li est ajouté, si on clique dessus il est supprimé. 
-                    Quand on ajoute un élément, on véifie que le champ n'est pas vide, une fois ajouté le champs est vidé.
+                    Quand on ajoute un élément, on vérifie que le champ n'est pas vide, une fois ajouté le champs est vidé.
                 </p>
                 <input type="text" id="listItem" />
                 <button id="addItem">Ajouter</button>
@@ -292,11 +337,6 @@
             </article>
             <article class="col-100">
                 <h2>PreventDefault()</h2>
-                <p>
-                    <a href="#" id="toto" class="testPreventLink">toto</a> 
-                    <a href="#" id="tata" class="testPreventLink">tata</a> 
-                    <a href="#" id="titi" class="testPreventLink">titi</a> 
-                </p>
                 <h3>Exemple sur un formulaire</h3>
                 <form id="formValid">
                     <div class="alertFormValid hidden">
