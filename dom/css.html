@@ -9,7 +9,54 @@
     <link rel="stylesheet" href="../css/style.css" />
     <script src="../js/scripts.js"></script>
     <script>
-        
+        /* addStyle(p, 'border-style:dashed', 'border-color:black', 'border-width:2px') */
+        function addStyle(element, ...properties){
+            properties.map(property=>{
+                element.style.setProperty(property.split(':')[0], property.split(':')[1]);
+            });
+        }
+
+        window.addEventListener('DOMContentLoaded', function(){
+            document.getElementById('btn').addEventListener('click', function(){
+                const cible = document.getElementById('cible');
+                if(!cible.hasAttribute('style')){
+                    /*
+                    cible.style.borderWidth = '2px';
+                    cible.style.borderColor = 'black';
+                    cible.style.borderStyle = 'dashed';
+                    */
+                    addStyle(cible, 'border-style:dashed', 'border-color:black', 'border-width:2px', 'color:bisque', 'background-color:rgba(0,0,0,0.2)');
+                    console.log(cible.style.cssText);
+                    /*  cible.style.setProperty('border-style', '2px'); */
+                }else{
+                    cible.removeAttribute('style');
+                }
+            });
+
+            /*
+            border-style: dashed; border-color: black; border-width: 2px; color: bisque; background-color: rgba(0, 0, 0, 0.2);
+            */
+
+            document.getElementById('btnCssText').addEventListener('click', function(){
+                const cible = document.getElementById('cibleCssText');
+                if(!cible.hasAttribute('style')){
+                    cible.style.cssText = 'border-style: dashed; border-color: black; border-width: 2px; color: bisque; background-color: rgba(0, 0, 0, 0.2);';
+                }else{
+                    cible.removeAttribute('style');
+                }
+            });
+
+            /* 
+            mini exercice :
+            déplacer le carré orange en utilisant les boutons
+            */
+
+            /*
+            répérer le clic sur les boutons
+
+            selon le bouton cliqué, mette la bonne classe à l'élément carré
+            */
+        });
     </script>
 </head>
 
@@ -137,11 +184,11 @@
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque exercitationem sunt voluptate vitae rem voluptatem nostrum reprehenderit et, itaque voluptatibus doloribus mollitia? Voluptatum optio nihil deleniti ipsum pariatur? Nihil, sed.
                 </p>
                 <p>
-                    <button id="btnProperty">
-                        Ajouter des propriétés CSS
+                    <button id="btnCssText">
+                        Ajouter des propriétés CSS dans element.style.cssText
                     </button>
                 </p>
-                <p id="cibleProperty">
+                <p id="cibleCssText">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos iure illo omnis unde corrupti ex nemo assumenda perspiciatis ab maxime? Odit repellat ea error consequuntur, quidem inventore nihil quas porro.
                 </p>
                 <p>
