@@ -69,6 +69,20 @@
                 });
             });
 
+            let cptSpan = 1;
+
+            document.getElementById('addSpan').addEventListener('click', function(){
+                const span = document.createElement('span');
+                /* il y a dans le css une classe qui s'appelle testSpan */
+                span.classList.add('testSpan');
+                span.append(document.createTextNode(cptSpan));
+                cptSpan = cptSpan + 1;
+                span.addEventListener('click', function(){
+                    this.remove();
+                });
+                document.getElementById('test').append(span);
+            });
+
         });
     </script>
 </head>
@@ -249,6 +263,7 @@
                     <a href="#" id="titi" class="testPreventLink">titi</a> 
 
                 </p>
+                <h3>TD : Ajouter un span dans le paragraphe</h3>
                 <p>
                     <button id="addSpan">
                         Ajouter un span dans le paragraphe.
