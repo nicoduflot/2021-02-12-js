@@ -57,4 +57,5 @@ window.addEventListener('DOMContentLoaded', function(event){
         this.nextElementSibling.innerHTML = 'Pip boy sans le bras droit';
     });
 
+    
 });
