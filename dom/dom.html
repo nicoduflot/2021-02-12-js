@@ -9,7 +9,16 @@
     <link rel="stylesheet" href="../css/style.css" />
     <script src="../js/scripts.js"></script>
     <script>
+        window.addEventListener('DOMContentLoaded', function(){
+            const div = document.getElementById('conteneur');
+            /*
+            div.innerHTML = '<button id="button">button</button>';
+            const button = document.getElementById('button');
+            console.log(button);
+            */
 
+
+        });
     </script>
 </head>
 
@@ -128,6 +137,46 @@
         <section class="row">
             <article class="col-100">
                 <h2>Créer dans le DOM</h2>
+                <div id="conteneur">
+
+                </div>
+                <table class="tbEventTarget">
+                    <tr data-line="01">
+                        <td data-col="01">&nbsp;</td>
+                        <td data-col="02">&nbsp;</td>
+                        <td data-col="03">&nbsp;</td>
+                        <td data-col="04">&nbsp;</td>
+                        <td data-col="05">&nbsp;</td>
+                    </tr>
+                    <tr data-line="02">
+                        <td data-col="01">&nbsp;</td>
+                        <td data-col="02">&nbsp;</td>
+                        <td data-col="03">&nbsp;</td>
+                        <td data-col="04">&nbsp;</td>
+                        <td data-col="05">&nbsp;</td>
+                    </tr>
+                    <tr data-line="03">
+                        <td data-col="01">&nbsp;</td>
+                        <td data-col="02">&nbsp;</td>
+                        <td data-col="03">&nbsp;</td>
+                        <td data-col="04">&nbsp;</td>
+                        <td data-col="05">&nbsp;</td>
+                    </tr>
+                    <tr data-line="04">
+                        <td data-col="01">&nbsp;</td>
+                        <td data-col="02">&nbsp;</td>
+                        <td data-col="03">&nbsp;</td>
+                        <td data-col="04">&nbsp;</td>
+                        <td data-col="05">&nbsp;</td>
+                    </tr>
+                    <tr data-line="05">
+                        <td data-col="01">&nbsp;</td>
+                        <td data-col="02">&nbsp;</td>
+                        <td data-col="03">&nbsp;</td>
+                        <td data-col="04">&nbsp;</td>
+                        <td data-col="05">&nbsp;</td>
+                    </tr>
+                </table>
                 <p>
                     <button id="addSpan">
                         Ajouter un span dans le paragraphe.

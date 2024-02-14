@@ -79,6 +79,21 @@
     background-color: rgba(0,0,0,0.1);
 }
 
+.tbEventTarget{
+    border-collapse: collapse;
+}
+
+.tbEventTarget td{
+    border: 1px solid black;
+    width: 40px;
+    height: 40px;
+}
+
+.tbEventTarget td:hover{
+    background-color: rgba(139, 0, 0, 0.5);
+    cursor: pointer;
+}
+
 /* classes */
 
 .testSpan{
