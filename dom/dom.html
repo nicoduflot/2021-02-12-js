@@ -17,6 +17,57 @@
             console.log(button);
             */
 
+            const tbEventTarget = document.querySelector('table.tbEventTarget');
+
+            tbEventTarget.addEventListener('click', function(event){
+                console.log(event.target);
+                console.log(event.target.parentNode);
+            });
+
+            const button = document.createElement('button');
+            button.addEventListener('click', function(){
+                console.log('test au clic');
+            });
+            const buttonContent = document.createTextNode('DOM Button');
+            button.append(buttonContent);
+            div.appendChild(button);
+            console.log(button);
+
+            button.classList.add('toto', 'titi');
+            button.style.borderStyle = 'solid';
+            button.style.borderRadius = '5px';
+            button.style.setProperty('border-color', 'darkred');
+            //button.style.removeProperty('border-color');
+            //button.style.borderColor = 'unset';
+
+            const divStop01 = document.querySelector('#stop01');
+            const btnDivStop01 = document.querySelector('#stop01 button');
+            const divStop02 = document.querySelector('#stop02');
+            const btnDivStop02 = document.querySelector('#stop02 button');
+
+            divStop01.addEventListener('click', function(){
+                console.log('clic div01');
+            });
+            
+            btnDivStop01.addEventListener('click', function(){
+                console.log('clic btn01');
+            });
+            
+            divStop02.addEventListener('click', function(){
+                console.log('clic div02');
+            });
+            
+            btnDivStop02.addEventListener('click', function(event){
+                event.stopPropagation();
+                console.log('clic btn02');
+            });
+
+            document.querySelectorAll('a.testPreventLink').forEach(function(link){
+                link.addEventListener('click', function(event){
+                    event.preventDefault();
+                    console.log(this.getAttribute('id'));
+                });
+            });
 
         });
     </script>
@@ -136,10 +187,13 @@
     <main class="container">
         <section class="row">
             <article class="col-100">
+                <a href="#bottom">Aller en bas</a>
                 <h2>Créer dans le DOM</h2>
-                <div id="conteneur">
-
-                </div>
+                <h3>Event Target</h3>
+                <!-- 
+                    en abbreviation emmet :  
+                    table.tbEventTarget>tr[data-line="$$"]*5>td[data-col="$$"]{&nbsp;}*5
+                -->
                 <table class="tbEventTarget">
                     <tr data-line="01">
                         <td data-col="01">&nbsp;</td>
@@ -177,6 +231,24 @@
                         <td data-col="05">&nbsp;</td>
                     </tr>
                 </table>
+                <h3>.createElement()</h3>
+                <div id="conteneur">
+
+                </div>
+                <h3>Stop Propagation</h3>
+                <div id="stop01">
+                    <button>Clic</button>
+                </div>
+                <div id="stop02">
+                    <button>Clic</button>
+                </div>
+                <h3>.preventDefault()</h3>
+                <p>
+                    <a href="#" id="toto" class="testPreventLink">toto</a> 
+                    <a href="#" id="tata" class="testPreventLink">tata</a> 
+                    <a href="#" id="titi" class="testPreventLink">titi</a> 
+
+                </p>
                 <p>
                     <button id="addSpan">
                         Ajouter un span dans le paragraphe.
@@ -219,7 +291,7 @@
                         <legend>Civilité</legend>
                         <p>
                             <label>Nom : </label>
-                            <input type="text" name="nom" />
+                            <input type="text" name="nom" required />
                         </p>
                         <p>
                             <label>Prénom : </label>
@@ -242,6 +314,7 @@
         <div class="container">
             &copy; DAWAN - 07-2023
         </div>
+        <span id="bottom"></span>
     </footer>
 </body>
 </html>
