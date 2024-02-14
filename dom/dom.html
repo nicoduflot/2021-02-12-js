@@ -128,6 +128,28 @@
                 }
             });
 
+            document.querySelector('#formValid button[type="submit"]').addEventListener('click', function(event){
+                event.preventDefault();
+                const inputNom = document.querySelector('#formValid input[name="nom"]');
+                const inputPrenom = document.querySelector('#formValid input[name="prenom"]');
+                console.log(inputNom, inputPrenom);
+                if(inputNom.value !== '' && inputPrenom.value !== ''){
+                    document.querySelector('div.alertFormValid').classList.add('hidden');
+                    document.querySelector('#formValid').submit();
+                }else{
+                    /* un des deux champs ou les deux champs sont vides */
+                    document.querySelector('div.alertFormValid').classList.remove('hidden');
+                    /* faire une liste des input */
+                    const inputList = document.querySelectorAll('#formValid input');
+                    /* parcourir la liste */
+                    inputList.forEach(input=>{
+                        /* regarder la valeur de chaque input de la liste */
+                        /* si la valeur est vide, ajouter la classe alertInput */
+                        (input.value === '')? input.classList.add('alertInput') : input.classList.remove('alertInput');
+                    });
+                }
+            });
+
         });
     </script>
 </head>
@@ -345,9 +367,12 @@
                     <fieldset>
                         <legend>Civilité</legend>
                         <p>
-                            <label>Nom : </label>
-                            <input type="text" name="nom" required />
+                            <label for="champNom">Nom : </label>
+                            <input type="text" name="nom" id="champNom" aria-describedby="info-nom" />
                         </p>
+                        <div id="info-nom">
+                            Ecrire votre nom d'usage. Ce champs est obligatoire.
+                        </div>
                         <p>
                             <label>Prénom : </label>
                             <input type="text" name="prenom" />
