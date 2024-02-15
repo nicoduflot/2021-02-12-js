@@ -52,6 +52,58 @@ function jsonToTable(data){
     return table;
 }
 
+function jsonToTableSearch(data, term = ''){
+    
+    term = term.toLowerCase();
+    let table = '<table class="table text-left">';
+    let line = '';
+    let termFound = (term === '')? true : false;
+    
+    for(item of data){
+        line = line + '<tr>';
+        for(key in item){
+            if(typeof item[key] !== 'object'){
+                line = line + `<td><b>${key}</b><br />`;
+                if(item[key].toString().toLowerCase().indexOf(term) >= 0 && term !== ''){
+                    termFound = true;
+                    line = line + `<mark>`;
+                }
+                line = line +`${item[key]}`;
+                if(item[key].toString().toLowerCase().indexOf(term) >= 0 && term !== ''){
+                    line = line + `</mark>`;
+                }
+                line = line + `</td>`;
+            }else{
+                const subItem = item[key];
+                line = line + `<td><b>${key}</b><br />`;
+                for(subKey in subItem){
+                    if(typeof subItem[subKey] !== 'object'){
+                        line = line + `<b>${subKey}</b> : `
+                        if(subItem[subKey].toString().toLowerCase().indexOf(term) >= 0 && term !== ''){
+                            termFound = true;
+                            line = line + `<mark>`;
+                        }
+                        line = line + `${subItem[subKey]}<br />`;
+                        if(subItem[subKey].toString().toLowerCase().indexOf(term) >= 0 && term !== ''){
+                            line = line + `</mark>`;
+                        }
+                    }
+                }
+                line = line + '</td>';
+            }
+        }
+        line = line + '</tr>';
+        if(termFound){
+            table = table + line;
+            termFound = false;
+        }
+        line = '';
+        termFound = (term === '')? true : false;
+    }
+    table = table + '</table>';
+    return table;
+}
+
 window.addEventListener('DOMContentLoaded', function(){
     document.querySelectorAll('.toggle-menu').forEach(element=>{
         element.addEventListener('click', function(){
