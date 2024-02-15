@@ -97,7 +97,13 @@
                     case 'font': 
                     case 'magie':
                         /* mini exo : faire la partie font et magie, si pas d'indication de poid, appliquer 'lighter' */
-                        
+                        const weight = element.dataset.weight || 'lighter';
+                        element.addEventListener('mouseover', function(){
+                            this.style.setProperty('font-weight', weight);
+                        });
+                        element.addEventListener('mouseleave', function(){
+                            this.style.removeProperty('font-weight');
+                        });
                     break;
                     case 'after':
                     default: 

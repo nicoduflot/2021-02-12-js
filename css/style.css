@@ -1,8 +1,7 @@
-@import url('./RobotoBold.css');
-@import url('./RobotoRegular.css');
+@import url('./font.css');
 
 :root{
-    font-family: 'RobotoRegular',Arial, Helvetica, sans-serif;
+    font-family: 'Roboto',Arial, Helvetica, sans-serif;
     --gutter: 0.5rem;
     --colonne-1-1: calc(100% );
     --colonne-1-2: calc(50% );
@@ -203,7 +202,7 @@ nav ul.navigation{
 }
 
 h1, h2, h3, h4, h5, h6{
-    font-family: 'RobotoBold';
+    font-family: 'Roboto';
     margin: 0;
 }
 
@@ -214,7 +213,8 @@ a h1, a:visited h1{
 a, a:visited{
     color: #007BFF;
     text-decoration: none;
-    font-family: 'RobotoBold';
+    font-family: 'Roboto';
+    font-weight: bold;
 }
 
 body > header{
