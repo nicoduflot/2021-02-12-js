@@ -9,7 +9,40 @@
     <link rel="stylesheet" href="../css/style.css" />
     <script src="../js/scripts.js"></script>
     <script>
+        window.addEventListener('DOMContentLoaded', function(){
+            const xhr = getXhr();
+            const result = document.getElementById('result');
+            document.querySelectorAll('button.read[data-url]').forEach(bouton=>{
+                bouton.addEventListener('click', function(){
+                    const resourceUrl = this.dataset.url;
+                    /*
+                    xhr.open('GET', resourceUrl, false);
+                    xhr.send();
+                    console.log(xhr);
+                    console.log(xhr.responseText);
+                    */
 
+                    xhr.onreadystatechange = function(){
+                        if(xhr.status !== 200){
+                            if(xhr.status === 404){
+                                result.innerHTML = `Erreur 404 : <br />
+                                La ressource "${resourceUrl}" n'existe pas où n'a pas été trouvée`;
+                            }else{
+                                result.innerHTML = `Erreur ${xhr.status} : <br />
+                                impossibilité de résoudre votre requête<br />
+                                ressource : ${resourceUrl}<br />`;
+                            }
+                        }else{
+                            result.innerHTML = xhr.responseText;
+                        }
+                    }
+
+                    xhr.open('GET', resourceUrl);
+                    xhr.send();
+                });
+            });
+
+        });
     </script>
 </head>
 
@@ -133,6 +166,12 @@
                 <p>
                     <button class="read" data-url="../resource/file.txt">
                         Lire le fichier txt
+                    </button>
+                    <button class="read" data-url="../resource/books.xml">
+                        Lire le fichier xml
+                    </button>
+                    <button class="read" data-url="../resource/comments.json">
+                        Lire le fichier json
                     </button>
                     <button class="read" data-url="../data/resource/file.txt">
                         Connexion en erreur
