@@ -10,6 +10,101 @@
     <script src="../js/scripts.js"></script>
     <script>
 
+        function getRandom(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        window.addEventListener('DOMContentLoaded', function(){
+            const allH2 = document.querySelectorAll('h2');
+            console.log(allH2);
+            allH2.forEach(function(element){
+                console.log(element.dataset.title);
+            });
+
+            console.log(Math.random());
+            console.log(Math.floor(Math.random()*6 + 1));
+
+            console.log(getRandom(5, 15));
+
+            const date = new Date();
+            console.log(typeof date.getTime());
+            let timeString = date.getTime().toString();
+            console.log(timeString, typeof timeString);
+
+            timeString = parseInt(timeString.charAt(timeString.length-1));
+            console.log(timeString, typeof timeString);
+
+            switch(timeString){
+                case 0:
+                    console.log('timestring = 0');
+                break;
+                case 1:
+                case 2:
+                    console.log('timestring < 3');
+                break;
+                case 3:
+                case 4:
+                    console.log(' 3 <= timestring < 5');
+                break;
+                case 5:
+                default: 
+                    console.log('timestring >= 5');
+            }
+
+            function heuresOuvertureSD(date){
+                switch(date.getDay()){
+                    case 1: 
+                        return 'Fermé';
+                    case 0:
+                    case 6:
+                        return '08:00 - 12:00';
+                    default:
+                        return '08:00 - 20:00';
+                }
+            }
+
+            console.log(heuresOuvertureSD(date));
+
+            function heuresOuvertureST(date){
+                const weekday = date.getDay();
+                switch(true){
+                    case [0,6].includes(weekday): 
+                        return '08:00 - 12:00';
+                    case weekday === 1:
+                        return 'Fermé';
+                    default:
+                        return '08:00 - 20:00';
+                }
+            }
+
+            console.log(heuresOuvertureST(date));
+
+            const pModule = document.querySelectorAll('p[data-module]');
+            console.log(pModule);
+
+            pModule.forEach(element=>{
+                const module = element.dataset.module;
+                switch(module){
+                    case 'color':
+                        const color = element.dataset.color || '#ff0000';
+                        element.addEventListener('mouseover', function(){
+                            this.style.setProperty('color', color);
+                        });
+                        element.addEventListener('mouseleave', function(){
+                            this.style.removeProperty('color');
+                        });
+                    break;
+                    case 'font': 
+                    case 'magie':
+                        
+                    break;
+                    case 'after':
+                    default: 
+                        // code du cas ou le module n'est pas programmé 
+                }
+            });
+
+        });
     </script>
 </head>
 
