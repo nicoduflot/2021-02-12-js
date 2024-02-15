@@ -10,6 +10,51 @@
     <script src="../js/scripts.js"></script>
     <script>
 
+        function traitementLong(){
+            const randError = Math.floor(Math.random()*3 + 1);
+            const data = 'Le formateur aime les jeux de rôles';
+
+            /*console.log(randError, data);*/
+
+            return new Promise( function(resolve, reject){
+                setTimeout(function(){
+                    if(randError !== 2){
+                        resolve(data);
+                    }else{
+                        reject( new Error('L\'information n\'est pas disponible'));
+                    }
+                }, 3000);
+            });
+        }
+
+        async function asyncCall(){
+            let result = await traitementLong();
+
+            return result;
+        }
+
+        window.addEventListener('DOMContentLoaded', function(){
+
+            document.querySelectorAll('button.read').forEach(button=>{
+                button.addEventListener('click', function(){
+                    console.log('avant traitement asynchrone');
+                    // on appelle une fonction asynchrone
+                    asyncCall()
+                    .then(function(reponse){
+                        console.log(reponse);
+                    })
+                    .catch(function(error){
+                        console.error(error.message);
+                    })
+                    .finally(function(){
+                        console.log('traitement de la promesse terminé');
+                    });
+
+                    console.log('toto');
+                });
+            });
+
+        });
     </script>
 </head>
 
@@ -133,7 +178,7 @@
                 <hr />
                 <p>
                     <button class="read">
-                        Récupérer un info
+                        Récupérer une info
                     </button>
                 </p>
                 <div id="result">
