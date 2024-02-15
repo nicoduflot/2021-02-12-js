@@ -22,6 +22,36 @@ function getXhr(){
     return xhr;
 }
 
+function jsonToTable(data){
+    let table = '<table class="table text-left">';
+    if(!data.length){
+        table = table + '<tr><td>';
+        
+        table = table + '</td></tr>';
+    }else{
+        for(item of data){
+            table = table + '<tr>';
+            for(key in item){
+                if(typeof item[key] !== 'object'){
+                    table = table + `<td><b>${key}</b><br />${item[key]}</td>`;
+                }else{
+                    const subItem = item[key];
+                    table = table + `<td><b>${key}</b><br />`;
+                    for(subKey in subItem){
+                        if(typeof subItem[subKey] !== 'object'){
+                            table = table + `<b>${subKey}</b> : ${subItem[subKey]}<br />`;
+                        }
+                    }
+                    table = table + '</td>';
+                }
+            }
+            table = table + '</tr>';
+        }
+    }
+    table = table + '</table>';
+    return table;
+}
+
 window.addEventListener('DOMContentLoaded', function(){
     document.querySelectorAll('.toggle-menu').forEach(element=>{
         element.addEventListener('click', function(){

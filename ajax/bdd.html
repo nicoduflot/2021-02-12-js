@@ -15,11 +15,12 @@
                     const url = button.dataset.url;
                     fetch(url)
                     .then(reponse=>{
-                        console.log(reponse);
+                        /*console.log(reponse);*/
                         return reponse.json();
                     })
                     .then(data=>{
-                        console.log(data);
+                        const table = jsonToTable(data);
+                        document.getElementById('result').innerHTML = table;
                     })
                     .catch(erreur=>{
                         console.log(erreur);
@@ -157,6 +158,9 @@
                     </button>
                     <button class="read" data-url="../resource/users.json">
                         Lire le fichier local users.json
+                    </button>
+                    <button class="read" data-url="https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=cAFSnwOQAdyjLaJ0zSltkk6uV4r0n5rc">
+                        Lire bookreview nyt
                     </button>
                     <button class="read" data-url="../resource/e/users.json">
                         erreur fichier non trouvé
