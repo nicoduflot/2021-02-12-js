@@ -111,6 +111,46 @@
                 }
             });
 
+            /* 
+            "Pointeur" ligne - colonne sur un tableau 
+
+            1 récupérer toutes les td qui sont concernées par la fonctionnalité
+
+            2 abonner chaque td à deux écouteurs d'événement
+                - un pour l'entrée dans le périmètre de la td
+                - un pour la sortie du périmètre de la td
+
+            */
+
+            const tds = document.querySelectorAll('#coord td[data-column][data-line]');
+            const spanXY = document.getElementById('xy');
+            const xValue = document.getElementById('xValue');
+            const yValue = document.getElementById('yValue');
+
+            tds.forEach(function(element){
+                const column = element.dataset.column;
+                element.addEventListener('mouseover', function(){
+                    element.parentElement.style.background = 'rgba(255,0,0,0.5)';
+                    document.querySelectorAll(`td[data-line][data-column="${column}"]`).forEach(function(td){
+                        td.style.background = 'rgba(255,0,0,0.5)';
+                    });
+                    xValue.value = column;
+                    yValue.value = element.dataset.line;
+                    spanXY.innerHTML = `x : ${column} - y : ${element.dataset.line}`;
+                });
+                element.addEventListener('mouseleave', function(){
+                    element.parentElement.style.removeProperty('background');
+                    document.querySelectorAll(`td[data-line][data-column="${column}"]`).forEach(function(td){
+                        td.style.removeProperty('background');
+                    });
+                    xValue.value = 0;
+                    yValue.value = 0;
+                    spanXY.innerHTML = `x : &nbsp; - y : &nbsp;`;
+                });
+            });
+
+            
+
         });
     </script>
 </head>
