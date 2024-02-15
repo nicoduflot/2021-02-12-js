@@ -9,7 +9,27 @@
     <link rel="stylesheet" href="../css/style.css" />
     <script src="../js/scripts.js"></script>
     <script>
-        
+        window.addEventListener('DOMContentLoaded', function(){
+            document.querySelectorAll('button.read').forEach(button=>{
+                button.addEventListener('click', function(){
+                    const url = button.dataset.url;
+                    fetch(url)
+                    .then(reponse=>{
+                        console.log(reponse);
+                        return reponse.json();
+                    })
+                    .then(data=>{
+                        console.log(data);
+                    })
+                    .catch(erreur=>{
+                        console.log(erreur);
+                    })
+                    .finally(()=>{
+                        console.log('traitement terminé');
+                    });
+                });
+            });
+        });
     </script>
 </head>
 
