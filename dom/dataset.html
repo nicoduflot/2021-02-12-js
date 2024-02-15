@@ -149,7 +149,22 @@
                 });
             });
 
-            
+            let colorNow = 'pionRouge';
+
+            document.querySelectorAll('#p4 th').forEach(th=>{
+                let colonne = 0;
+                th.addEventListener('click', function(){
+                    colonne = th.dataset.col;
+                    for(let i = 6; i > 0; i =i - 1){
+                        const cell = document.querySelector(`#p4 td[data-col="${colonne}"][data-row="${i}"]`);
+                        if( !cell.classList.contains('pionRouge') && !cell.classList.contains('pionJaune') ){
+                            cell.classList.add(colorNow);
+                            colorNow = (colorNow === 'pionRouge')? 'pionJaune' : 'pionRouge';
+                            break;
+                        }
+                    }
+                });
+            });
 
         });
     </script>
