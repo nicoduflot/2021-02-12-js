@@ -9,7 +9,57 @@
     <link rel="stylesheet" href="../css/style.css" />
     <script src="../js/scripts.js"></script>
     <script>
-        
+        window.addEventListener('DOMContentLoaded', function(){
+            /* 
+            Un objet est composé d'au moins un attribut (ou clef) qui contient une valeur ou une méthode 
+            méthode : une fonction uniquement utilisable via l'objet
+            quand un objet est créée à l'aide d'une classe, c'est une instance de la classe.
+            les méthodes statiques sont utilisable en appelant directement la classe qui la contient (mais on ne peut pas les appeler depuis l'objet créé par la classe)
+            les méthodes non statiques sont uniquement appelable (utilisables) depuis l'instance d'une classe (un objet)
+            */
+
+            /* il est possible de créer des objets litéralement (sans passer par une classe) */
+
+            /* objet litéral */
+
+            const monObjet = {
+                propriete: 'valeur',
+                methode: function(){
+                    const message = `${this.propriete} OK`;
+                    return message;
+                }
+            };
+
+            console.log(monObjet);
+            console.log(monObjet.propriete);
+            console.log(monObjet.methode());
+
+            /* Les objets js sont prototype => ils possèdent un constructeur */
+
+            function Humain(nom, prenom, age){
+                this.nom = nom;
+                this.prenom = prenom;
+                this.age = age;
+                this.esperanceVie = this.age + Math.floor( Math.random() * 30 + 10 );
+            }
+
+            Humain.prototype.monNom = function(){
+                return `Je suis ${this.prenom} ${this.nom}`;
+            }
+
+            const monHumain = new Humain('Le sage', 'Craô', 30);
+
+            Humain.crier = function(cri = ''){
+                return `${cri} RRRRRRRRRRR !`;
+            }
+
+            console.log(monHumain);
+            console.log(monHumain.monNom());
+            console.log(Humain.crier());
+            console.log(Humain.crier('PAR CROM '));
+
+            
+        });
     </script>
 </head>
 
