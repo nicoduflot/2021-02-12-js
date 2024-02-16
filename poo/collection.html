@@ -9,7 +9,89 @@
     <link rel="stylesheet" href="../css/style.css" />
     <script src="../js/scripts.js"></script>
     <script>
-       
+       window.addEventListener('DOMContentLoaded', function(){
+        /*
+        Collections : dictionnaires (ou tableaux associatif dans le cas de laclasse Map())
+        */
+
+        /* illégal mais qui fonction */
+
+        let tabAssoPirate = [];
+        tabAssoPirate['toto'] = 23;
+        tabAssoPirate['titi'] = 24;
+        console.log(tabAssoPirate);
+
+        /* un "tableau" de genre ne possède pas d'attribut length, donc certaines méthode de tableauxne fonctionnent pas */
+        for(let entry of tabAssoPirate.entries()){
+            console.log(entry);
+        }
+
+        tabAssoPirate.forEach(function(element){
+            console.log(element);
+        });
+
+        /* pour avoir un vrai tableau asso, il faut créer une instance de la classe Map() */
+
+        const map = new Map();
+
+        map.set('lastName', 'Doe')
+            .set('firstName', 'Jane')
+            .set('email', 'jdoe@missing.com')
+            .set('phone', '0123456789')
+            .set('phone', '9876543210')
+            .set('details', 'none')
+            /*.set('', 'truc')*/
+            ;
+        
+        console.log(map);
+        console.log(map.size);
+        console.log(map.get('phone'));
+
+        map.forEach((value, key, data)=>{
+            console.log(`${key} => ${value} dans ${data}`);
+        });
+
+        console.log(map.has('email'));
+        console.log(map.has('toto'));
+
+        /* 
+        Map produit un objet itérable, c'est à dire qu'elle contient ce qu'on appelle un "design pattern" iterator 
+        iterator permet de parcourir les données de l'objet comme s'il s'agissait d'un tableau
+        */
+
+        /*
+        .entries()
+        .keys()
+        .values()
+        */
+
+        /* .entries() */
+        console.log(`|${'KEY'.padEnd(20, ' ')}|${'VALUE'.padStart(20, ' ')}|`);
+        console.log(`|${''.padEnd(20, '-')}|${''.padStart(20, '-')}|`);
+        for(let [key, value] of map.entries()){
+            console.log(`|${key.padEnd(20, ' ')}|${value.padStart(20, ' ')}|`);
+        }
+        console.log(`|${''.padEnd(20, '-')}|${''.padStart(20, '-')}|`);
+        
+        /* .keys() */
+        console.log(`|${'KEY'.padEnd(20, ' ')}|${'VALUE'.padStart(20, ' ')}|`);
+        console.log(`|${''.padEnd(20, '-')}|${''.padStart(20, '-')}|`);
+        for(let key of map.keys()){
+            console.log(`|${key.padEnd(20, ' ')}|${'****'.padStart(20, ' ')}|`);
+        }
+        console.log(`|${''.padEnd(20, '-')}|${''.padStart(20, '-')}|`);
+        
+        /* .values() */
+        console.log(`|${'KEY'.padEnd(20, ' ')}|${'VALUE'.padStart(20, ' ')}|`);
+        console.log(`|${''.padEnd(20, '-')}|${''.padStart(20, '-')}|`);
+        for(let value of map.values()){
+            console.log(`|${'***'.padEnd(20, ' ')}|${value.padStart(20, ' ')}|`); 
+        }
+        console.log(`|${''.padEnd(20, '-')}|${''.padStart(20, '-')}|`);
+        
+        
+
+       });
     </script>
 </head>
 
