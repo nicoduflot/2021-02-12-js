@@ -11,10 +11,13 @@
     <script>
        window.addEventListener('DOMContentLoaded', function(){
         /*
-        Collections : dictionnaires (ou tableaux associatif dans le cas de laclasse Map())
+        Objets itérables : 
+            - les dictionnaires (ou tableaux associatif) de la classe Map()
+            - les collections de la classe Set()
+            - les objets itérables créés en utilisant le design pattern Iterator
         */
 
-        /* illégal mais qui fonction */
+        /* illégal mais qui fonctionne */
 
         let tabAssoPirate = [];
         tabAssoPirate['toto'] = 23;
@@ -30,7 +33,7 @@
             console.log(element);
         });
 
-        /* pour avoir un vrai tableau asso, il faut créer une instance de la classe Map() */
+        /* Pour avoir un vrai tableau asso, il faut créer une instance de la classe Map() */
 
         const map = new Map();
 
@@ -89,7 +92,45 @@
         }
         console.log(`|${''.padEnd(20, '-')}|${''.padStart(20, '-')}|`);
         
+        /*
+        Collection : Set()
+        */
+
+        const set = new Set(['Jon', 'Aria']);
+        console.log(set);
+        set.add('Sansa')
+        .add('Rob')
+        .add('Joffrey')
+        .add('Sansa')
+        .add('Hodor')
+        .add('Brandon')
+        .add('Oona');
+
+        console.log(set);
+
+        /* .entries() */
+        console.log(`|${'KEY'.padEnd(20, ' ')}|${'VALUE'.padStart(20, ' ')}|`);
+        console.log(`|${''.padEnd(20, '-')}|${''.padStart(20, '-')}|`);
+        for(let [key, value] of set.entries()){
+            console.log(`|${key.padEnd(20, ' ')}|${value.padStart(20, ' ')}|`);
+        }
+        console.log(`|${''.padEnd(20, '-')}|${''.padStart(20, '-')}|`);
         
+        /* .keys() */
+        console.log(`|${'KEY'.padEnd(20, ' ')}|${'VALUE'.padStart(20, ' ')}|`);
+        console.log(`|${''.padEnd(20, '-')}|${''.padStart(20, '-')}|`);
+        for(let key of set.keys()){
+            console.log(`|${key.padEnd(20, ' ')}|${'****'.padStart(20, ' ')}|`);
+        }
+        console.log(`|${''.padEnd(20, '-')}|${''.padStart(20, '-')}|`);
+        
+        /* .values() */
+        console.log(`|${'KEY'.padEnd(20, ' ')}|${'VALUE'.padStart(20, ' ')}|`);
+        console.log(`|${''.padEnd(20, '-')}|${''.padStart(20, '-')}|`);
+        for(let value of set.values()){
+            console.log(`|${'***'.padEnd(20, ' ')}|${value.padStart(20, ' ')}|`); 
+        }
+        console.log(`|${''.padEnd(20, '-')}|${''.padStart(20, '-')}|`);
 
        });
     </script>
