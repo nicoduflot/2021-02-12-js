@@ -10,7 +10,119 @@
     <script src="../js/scripts.js"></script>
     <script>
         /* factory */
-        
+        loaded(()=>{
+            /* la factory va permettre la création d'un objet qui sera un peu comme l'assemblage de différents objets */
+            class Employe{
+                constructor(name){
+                    this.name = name;
+                    this.role = 'Employe';
+                    this.resAuth = 'Utilisateur';
+                    this.parking = 'non'
+                }
+            }
+            
+            class Formateur extends Employe{
+                constructor(name){
+                    super(name);
+                    this.role = 'Formateur';
+                    this.resAuth = 'UtilisateurFormateur';
+                    this.parking = 'non'
+                }
+            }
+            
+            class Manager extends Employe{
+                constructor(name){
+                    super(name);
+                    this.role = 'Manager';
+                    this.resAuth = 'SuperUtilisateur';
+                    this.parking = 'oui'
+                }
+            }
+            
+            class RessourcesHumaines extends Employe{
+                constructor(name){
+                    super(name);
+                    this.role = 'RH';
+                    this.resAuth = 'RessourcesManager';
+                    this.parking = 'oui'
+                }
+            }
+
+            /*
+            On utilise (invoque) une factory quand on voudra créer un utilisateur du réseaux de l'entreprise.
+            Elle s'appuiera sur la classe Employe et ses classes enfants pour définir certains aspects, elle créera l'utilisateur selon le rôle défini
+            */
+            class UserFactory{
+                /*
+                Une factory n'a pas de contructeur, c'est le constructeur de la classe appelée (selon le rôle de l'utilisateur) qui sera utilisé.
+                */
+
+                static createUser(firstName, lastName, email, phone, city, country, role){
+                    let info = {
+                        firstName: firstName, 
+                        lastName: lastName, 
+                        email: email, 
+                        phone: phone,
+                        role: role
+                    };
+
+                    let adresse = {
+                        city: city,
+                        country: country
+                    }
+
+                    let user = {
+                        login: email
+                    }
+                    /* il faut parfois des méthode pour un utilisteur, par exemple, déclarer ses heures de travail */
+                    let methodes = {
+                        declarerHeures: function(nbHeures, activite){
+                            return `${this.firstName} enregistre ${nbHeures} heures pour l'activité ${activite}`;
+                        }
+                    }
+
+                    let reponse = null;
+                    switch(role){
+                        case 'Formateur':
+                                reponse = new Formateur(lastName);
+                        break;
+                        case 'Manager':
+                            reponse = new Manager(lastName);
+                        break;
+                        case 'RH':
+                            reponse = new RessourcesHumaines(lastName);
+                        break;
+
+                        default:
+                            reponse = new Employe(lastName);
+                    }
+
+                    /* reponse contient maintenant une instance de la classe Employe ou une instance d'une classe enfant d'Employe 
+                    On transforme l'objet réponse en utilisateur en y ajoutant les donnée générée par la factory
+                    */
+
+                    Object.assign(user, info, adresse, methodes, reponse);
+
+                    return user;
+                }
+
+                static changeRole(user, newRole){
+                    let newUser = this.createUser(user.firstName, user.lastName, user.email, user.phone, user.city, user.country, newRole);
+                    return newUser;
+                }
+            }
+
+            let nDuflot = UserFactory.createUser('Nicolas', 'Duflot', 'nduflot@dawan.fr', '0123456789', 'Lille', 'France', 'Formateur');
+            let hodor = UserFactory.createUser('Hodor', 'Hodor', 'Hodor@Hodor.hd', '09876543210', 'Le Nord', 'Westeros', 'Employe');
+            console.log(nDuflot);
+            console.log(hodor);
+            
+            hodor = UserFactory.changeRole(hodor, 'RH');
+            console.log(hodor);
+
+            console.log(hodor.declarerHeures(5, 'Tenir la porte'));
+
+        });
     </script>
 </head>
 
