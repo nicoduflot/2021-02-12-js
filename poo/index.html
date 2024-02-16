@@ -58,7 +58,125 @@
             console.log(Humain.crier());
             console.log(Humain.crier('PAR CROM '));
 
+            /*
+            Utiliser class
+            le terme class est arrivé avec ES6
+            À la difference des langages fort, les classes JS n'ont pas encore la possibilité de rendre les attributs ou les méthodes privées
+
+            Pour représenter aux dévelopeurs qu'un attribut ou une méthode s'utilise de façon privée, on utilisera une convention d'écriture
+            */
+
+            class Voiture{
+                constructor(marque, modele, couleur){
+                    /* avertir que l'attribut doit être utilisé de façon privée */
+                    this._marque = marque;
+                    this.modele = modele;
+                    this.couleur = couleur;
+                    this.ignition = false;
+                }
+
+                /* Si un attribut est privé, pour pouvoir être modifié ou récupéré, on doit passer par des méthodes particulières : 
+                getter et setter */
+                /* getter */
+                get getMarque(){
+                    return this._marque;
+                }
+
+                /* setter */
+                set setMarque(marque){
+                    this._marque = marque;
+                }
+
+                /* une voiture à plusieurs, fonction, par exemple, pour rouler, il faut démarrer */
+
+                demarrer(){
+                    if(!this.ignition){
+                        this.ignition = true;
+                        return `La ${this.constructor.name} démarre`;
+                    }else{
+                        return `La ${this.constructor.name} est déjà démarrée`;
+                    }
+                }
+                
+                rouler(){
+                    if(this.ignition){
+                        return `La ${this.constructor.name} roule`;
+                    }else{
+                        return `Vous devez démarrer ${this.constructor.name} pour rouler`;
+                    }
+                }
+
+                couperContact(){
+                    if(this.ignition){
+                        this.ignition = false;
+                        return `Le contact est coupé`;
+                    }else{
+                        return `Le contact est déjà coupé`;
+                    }
+                }
+
+                _methodeprivee(){
+                    /* une méthode qui doit ne doit être utilisée que par les méthode de la classe */
+                }
+
+                /* Méthode statique */
+                static klaxonner(){
+                    return 'POUEEEEEEEEEEET ! POUEEEEEEEEEEET !';
+                }
+            }
+
+            console.log(Voiture.klaxonner());
+
+            const maVoiture = new Voiture('Renault', 'Twingo', 'Vert poubelle');
+            console.log(maVoiture);
+            console.log(maVoiture.constructor.name);
+            console.log(maVoiture.demarrer());
+            console.log(maVoiture.rouler());
+            console.log(maVoiture.couperContact());
+
+            /* Créons une ambulance */
+            class Ambulance extends Voiture{
+                constructor(marque, modele, couleur){
+                    super(marque, modele, couleur);
+                    this.ignition = false;
+                    if(this.couleur.toLowerCase() !== 'blanc'){
+                        this.couleur = 'Blanc';
+                    }
+                    this.sirene = false;
+                }
+
+                toggleSirene(){
+                    this.sirene = (this.sirene)? false : true;
+                }
+
+                demarrer(){
+                    if(!this.ignition){
+                        let message = `La ${this.constructor.name} démarre`;
+                        this.ignition = true;
+                        message = message + ((this.sirene)? `\nPIN PON PIN PON !`: '');
+                        return message;
+                    }else{
+                        return `La ${this.constructor.name} est déjà démarrée`;
+                    }
+                }
+
+                static klaxonner(){
+                    return `POUET !`;
+                }
+            }
+
+            const monAmbulance = new Ambulance('Citroën', 'DS break', 'Rouge');
+            console.log(monAmbulance);
+            console.log(Ambulance.klaxonner());
+            console.log(monAmbulance.constructor.name);
+            console.log(monAmbulance.demarrer());
+            console.log(monAmbulance.rouler());
+            console.log(monAmbulance.couperContact());
+            monAmbulance.toggleSirene();
+            console.log(monAmbulance.demarrer());
+            monAmbulance.toggleSirene();
             
+
         });
     </script>
 </head>
