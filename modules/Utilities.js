@@ -20,7 +20,6 @@ function sA(selector){
     return document.querySelectorAll(selector);
 }
 
-
 function jourOuvres(dateCommande){
     let anneeCommande = dateCommande.getFullYear();
     let dateMaxLiv = null;

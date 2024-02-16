@@ -10,7 +10,66 @@
     <script src="../js/scripts.js"></script>
     <script>
         /* iterator */
-        
+        loaded(()=>{
+            /* un itérator est un objet itérable, possèdant ses propres méthodes, comme Map() et Set() */
+            /* création d'un itérator en objet litéral */
+
+            let myIterator = {
+                /*
+                un iterator DOIT ABSOLUMENT avoir au moins une de ses propriétés qui soit un tableau
+                */
+                elements: [],
+                /* d'autres prpriétés peuvent aussi être ajoutées */
+                /* ainsi que des méthodes pour ce type custom d'itérator */
+                add(...valeurs){
+                    for(let value of valeurs){
+                        this.elements.push(value);
+                    }
+                },
+                count(search){
+                    let cpt = 0;
+                    for(let value of this.elements){
+                        cpt = cpt + ((value === search)? 1 : 0);
+                    }
+                    return cpt;
+                },
+                /* 
+                il faut maintenant déclarer le concept itérateur de l'objet
+                Il faut définir quelle sera la prpriété de l'objet qui sera l'itérable dans l'objet.
+                On déclare alors le Symbole (Symbol) Itérateur de l'objet
+                */
+                [Symbol.iterator](){
+                    let index = 0;
+                    let elements = this.elements;
+                    return{
+                        next(){
+                            /*
+                            next est un générator.
+                            Il revoie l'un après l'autre ce qu'il reçoit. Il attends deux type de données : value et done.
+                            Value représente la valeur acutelle des éléments itérés, done est un booléen.
+                            Tant que done est faux, next() cntinue sont traitement
+                            */
+                            return{
+                                value: elements[index++],
+                                done: elements.length < index
+                            }
+                        }
+                    }
+                }
+            };
+
+            
+            myIterator.add('aria', 12, 'ok', 'aria', 'ok', 'ok', 'ok', 12);
+            console.log(myIterator);
+
+            for(let value of myIterator){
+                console.log(value);
+            }
+            
+            console.log(`doublon de la valeur "aria" : ${myIterator.count('aria')}`);
+            console.log(`doublon de la valeur "ok" : ${myIterator.count('ok')}`);
+
+        });
     </script>
 </head>
 

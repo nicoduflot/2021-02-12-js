@@ -104,10 +104,22 @@ function jsonToTableSearch(data, term = ''){
     return table;
 }
 
-window.addEventListener('DOMContentLoaded', function(){
-    document.querySelectorAll('.toggle-menu').forEach(element=>{
+function loaded(callback) {
+    window.addEventListener('DOMContentLoaded', callback);
+}
+
+function s(selector){
+    return document.querySelector(selector);
+}
+
+function sA(selector){
+    return document.querySelectorAll(selector);
+}
+
+loaded(function(){
+    sA('.toggle-menu').forEach(element=>{
         element.addEventListener('click', function(){
-            document.querySelector(element.dataset.target).classList.toggle('toggle-element');
+            s(element.dataset.target).classList.toggle('toggle-element');
         });
     });
 });
