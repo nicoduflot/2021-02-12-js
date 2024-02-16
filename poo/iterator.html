@@ -69,6 +69,62 @@
             console.log(`doublon de la valeur "aria" : ${myIterator.count('aria')}`);
             console.log(`doublon de la valeur "ok" : ${myIterator.count('ok')}`);
 
+            /*
+            generator
+            Un fonction qui retourne plusieurs valeurs
+            Une fonction utilise généralement return, une fois que return est atteint (ou éxécuté) la fonction s'arrête.
+            Un generator n'utilise pas return mais yield
+            Yield = rendre / récolter
+            Ppour spécifier qu'une fonction agis en tant que generator,
+            on le spécifie à l'aide du caractère * lors de la déclaration function
+            function* mafonction(){
+                //code
+                yield ... ;
+            }
+            */
+
+            function retourneTabPaire(min, max){
+                let result = [];
+                for(let i = min; i <= max; i = i + 1){
+                    if( 0 === ( i % 2)){
+                        result.push(i);
+                    }
+                }
+                return result;
+            }
+
+            console.log(retourneTabPaire(3, 25));
+
+            /* faire un générateur des valeur paire entre deux valeur min et max */
+
+            function* valeursPaires(min, max){
+                for(let i = min; i <= max; i = i + 1){
+                    if( 0 === ( i % 2)){
+                        yield i;
+                    }
+                }
+            }
+
+            console.log(valeursPaires(3, 25));
+            /* on ne voit rien car ce qui a été rendu doit être récolté */
+
+            let mesValeursPaires = [];
+            for(let value of valeursPaires(3, 25)){
+                mesValeursPaires.push(value);
+                console.log(value);
+            }
+            
+            console.log(mesValeursPaires);
+
+            function* xDy(ndbD, nbFaces){
+                for(let i = 0; i < ndbD; i = i + 1){
+                    yield Math.floor( Math.random()*nbFaces + 1);
+                }
+            }
+
+            for(let resD of xDy(2, 10)){
+                console.log(resD);
+            }
         });
     </script>
 </head>
