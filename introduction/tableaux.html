@@ -123,11 +123,12 @@
         const TVA = 0.055;
 
         console.log(tabTarif);
+        
         tabTarif.forEach(function(valeur, index, tab){
             tab[index] = valeur * (1 + TVA);
         });
         
-        console.log(tabTarif);
+        console.log( `tabtarif : ${tabTarif}`);
 
         console.log('------------ .map() (uniquement pour les tableaux) -----------');
         cars.map(function(valeur, index, tab){
